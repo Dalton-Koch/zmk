@@ -10,6 +10,14 @@
 
 typedef uint32_t zmk_keymap_layers_state_t;
 
+struct zmk_heatmap
+{
+    uint32_t count;
+    int64_t last_timestamp;
+    int64_t average_time_delta;
+};
+typedef struct zmk_heatmap zmk_heatmap_t;
+
 uint8_t zmk_keymap_layer_default();
 zmk_keymap_layers_state_t zmk_keymap_layer_state();
 bool zmk_keymap_layer_active(uint8_t layer);
@@ -18,10 +26,10 @@ int zmk_keymap_layer_activate(uint8_t layer);
 int zmk_keymap_layer_deactivate(uint8_t layer);
 int zmk_keymap_layer_toggle(uint8_t layer);
 int zmk_keymap_layer_to(uint8_t layer);
-const char *zmk_keymap_layer_label(uint8_t layer);
+const char* zmk_keymap_layer_label(uint8_t layer);
 
 int zmk_keymap_position_state_changed(uint8_t source, uint32_t position, bool pressed,
-                                      int64_t timestamp);
+    int64_t timestamp);
 
 #define ZMK_KEYMAP_EXTRACT_BINDING(idx, drv_inst)                                                  \
     {                                                                                              \
